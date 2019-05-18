@@ -12,8 +12,10 @@ public class Point {
     this.x2 = x2;
     this.y2 = y2;
   }
+
+  //AB = ?(x2 - x1)2 + (y2 - y1)2
+
+  public double distance (){
+    return Math.sqrt((this.x2 - this.x1) * (this.x2 - this.x1) + (this.y2 - this.y1) * (this.y2 - this.y1));
+  }
 }
-
-
-
-//AB = ?(x2 - x1)2 + (y2 - y1)2

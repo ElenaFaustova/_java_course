@@ -18,8 +18,4 @@ public class MyProgram {
     System.out.println("What a wonderful " + something + "!");
   }
 
-  public static double area(Rectangle r) {
-    return r.a * r.b;
-  }
-
 }
