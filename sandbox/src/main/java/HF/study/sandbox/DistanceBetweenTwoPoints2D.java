@@ -3,8 +3,9 @@ package HF.study.sandbox;
 public class DistanceBetweenTwoPoints2D {
 
   public static void main(String[] args) {
-    Point AB = new Point(4, 3, 7, 10);
-    System.out.println("Расстояние между точками A (" + AB.x1 + ", " +  AB.y1 + ") и B (" + AB.x2 + ", " + AB.y2 + ") = " + AB.distance());
+    Point A = new Point(4, 3);
+    Point B = new Point (7, 10);
+    System.out.println("Р Р°СЃСЃС‚РѕСЏРЅРёРµ РјРµР¶РґСѓ С‚РѕС‡РєР°РјРё A (" + A.x + ", " +  A.y + ") Рё B (" + B.x + ", " + B.y + ") = " + A.distance(B));
   }
 
 }

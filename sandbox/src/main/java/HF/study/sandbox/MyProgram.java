@@ -8,10 +8,10 @@ public class MyProgram {
     hello("life");
 
     Square s = new Square(4);
-    System.out.println("Площадь квадрата со стороной " + s.l + " = " + s.area());
+    System.out.println("РџР»РѕС‰Р°РґСЊ РєРІР°РґСЂР°С‚Р° СЃРѕ СЃС‚РѕСЂРѕРЅРѕР№ " + s.l + " = " + s.area());
 
     Rectangle r = new Rectangle(5,8);
-    System.out.println("Площадь прямоугольника со сторонами " + r.a + " и " + r.b + " = " + r.area());
+    System.out.println("РџР»РѕС‰Р°РґСЊ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР° СЃРѕ СЃС‚РѕСЂРѕРЅР°РјРё " + r.a + " Рё " + r.b + " = " + r.area());
   }
 
   public static void hello(String something) {
