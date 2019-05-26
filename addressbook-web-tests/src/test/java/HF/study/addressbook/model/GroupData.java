@@ -1,4 +1,4 @@
-package HF.study.addressbook;
+package HF.study.addressbook.model;
 
 public class GroupData {
   private final String name;

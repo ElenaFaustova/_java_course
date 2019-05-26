@@ -1,4 +1,4 @@
-package HF.study.addressbook;
+package HF.study.addressbook.model;
 
 public class ContactData {
   private final String firstname;

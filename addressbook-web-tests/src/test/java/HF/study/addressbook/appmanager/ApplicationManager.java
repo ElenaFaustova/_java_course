@@ -1,21 +1,20 @@
-package HF.study.addressbook;
+package HF.study.addressbook.appmanager;
 
+import HF.study.addressbook.model.ContactData;
+import HF.study.addressbook.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestBase {
+public class ApplicationManager {
   public WebDriver wd;
 
-  @BeforeMethod(alwaysRun = true)
-  public void setUp() throws Exception {
+  public void init() {
     wd = new FirefoxDriver();
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/");
@@ -31,19 +30,19 @@ public class TestBase {
     wd.findElement(By.xpath("//input[@value='Login']")).click();
   }
 
-  protected void logout(String logout) {
+  public void logout(String logout) {
     wd.findElement(By.linkText(logout)).click();
   }
 
-  protected void returnToGroupPage() {
+  public void returnToGroupPage() {
     wd.findElement(By.linkText("group page")).click();
   }
 
-  protected void submitGroupCreation(String submit) {
+  public void submitGroupCreation(String submit) {
     wd.findElement(By.name(submit)).click();
   }
 
-  protected void fillGroupForm(GroupData groupDate) {
+  public void fillGroupForm(GroupData groupDate) {
     wd.findElement(By.name("group_name")).click();
     wd.findElement(By.name("group_name")).clear();
     wd.findElement(By.name("group_name")).sendKeys(groupDate.getName());
@@ -53,16 +52,15 @@ public class TestBase {
     wd.findElement(By.name("group_footer")).sendKeys(groupDate.getFooter());
   }
 
-  protected void initGroupCreation(String s) {
+  public void initGroupCreation(String s) {
     wd.findElement(By.name(s)).click();
   }
 
-  protected void gotoGroupPage() {
+  public void gotoGroupPage() {
     wd.findElement(By.linkText("groups")).click();
   }
 
-  @AfterMethod(alwaysRun = true)
-  public void tearDown() throws Exception {
+  public void stop() {
     wd.quit();
   }
 
@@ -84,19 +82,19 @@ public class TestBase {
     }
   }
 
-  protected void deleteSelectedGroups() {
+  public void deleteSelectedGroups() {
     wd.findElement(By.name("delete")).click();
   }
 
-  protected void selectGroup() {
+  public void selectGroup() {
     wd.findElement(By.name("selected[]")).click();
   }
 
-  protected void submitContactCreation(String s) {
+  public void submitContactCreation(String s) {
     wd.findElement(By.xpath(s)).click();
   }
 
-  protected void fillContactForm(ContactData contactData) {
+  public void fillContactForm(ContactData contactData) {
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
     wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstname());
@@ -154,7 +152,7 @@ public class TestBase {
     wd.findElement(By.name("notes")).sendKeys(contactData.getNotes());
   }
 
-  protected void addNewContact(String s) {
+  public void addNewContact(String s) {
     wd.findElement(By.linkText(s)).click();
   }
 }
