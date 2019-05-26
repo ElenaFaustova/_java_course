@@ -5,11 +5,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class ContactHelper {
-  private WebDriver wd;
+public class ContactHelper extends HelperBase {
 
   public ContactHelper(WebDriver wd) {
-    this.wd = wd;
+    super(wd);
   }
 
   public void submitContactCreation(String s) {
@@ -17,61 +16,34 @@ public class ContactHelper {
   }
 
   public void fillContactForm(ContactData contactData) {
-    wd.findElement(By.name("firstname")).click();
-    wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstname());
-    wd.findElement(By.name("middlename")).clear();
-    wd.findElement(By.name("middlename")).sendKeys(contactData.getMiddlename());
-    wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys(contactData.getLastname());
-    wd.findElement(By.name("nickname")).clear();
-    wd.findElement(By.name("nickname")).sendKeys(contactData.getNickname());
-    wd.findElement(By.name("title")).clear();
-    wd.findElement(By.name("title")).sendKeys(contactData.getTitle());
-    wd.findElement(By.name("company")).clear();
-    wd.findElement(By.name("company")).sendKeys(contactData.getCompany());
-    wd.findElement(By.name("address")).clear();
-    wd.findElement(By.name("address")).sendKeys(contactData.getAddress());
-    wd.findElement(By.name("home")).clear();
-    wd.findElement(By.name("home")).sendKeys(contactData.getHomeTelephone());
-    wd.findElement(By.name("mobile")).clear();
-    wd.findElement(By.name("mobile")).sendKeys(contactData.getMobileTelephone());
-    wd.findElement(By.name("work")).clear();
-    wd.findElement(By.name("work")).sendKeys(contactData.getWorkTelephone());
-    wd.findElement(By.name("fax")).clear();
-    wd.findElement(By.name("fax")).sendKeys(contactData.getFax());
-    wd.findElement(By.name("email")).clear();
-    wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
-    wd.findElement(By.name("email2")).clear();
-    wd.findElement(By.name("email2")).sendKeys(contactData.getEmail2());
-    wd.findElement(By.name("email3")).clear();
-    wd.findElement(By.name("email3")).sendKeys(contactData.getEmail3());
-    wd.findElement(By.name("homepage")).clear();
-    wd.findElement(By.name("homepage")).sendKeys(contactData.getHomepage());
-    wd.findElement(By.name("bday")).click();
-    new Select(wd.findElement(By.name("bday"))).selectByVisibleText(contactData.getBday());
-    wd.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Birthday:'])[1]/following::option[3]")).click();
-    wd.findElement(By.name("bmonth")).click();
-    new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(contactData.getBmonth());
-    wd.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Birthday:'])[1]/following::option[43]")).click();
-    wd.findElement(By.name("byear")).click();
-    wd.findElement(By.name("byear")).clear();
-    wd.findElement(By.name("byear")).sendKeys(contactData.getByear());
-    wd.findElement(By.name("aday")).click();
-    new Select(wd.findElement(By.name("aday"))).selectByVisibleText(contactData.getAday());
-    wd.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Anniversary:'])[1]/following::option[12]")).click();
-    wd.findElement(By.name("amonth")).click();
-    new Select(wd.findElement(By.name("amonth"))).selectByVisibleText(contactData.getAmonth());
-    wd.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Anniversary:'])[1]/following::option[41]")).click();
-    wd.findElement(By.name("ayear")).click();
-    wd.findElement(By.name("ayear")).clear();
-    wd.findElement(By.name("ayear")).sendKeys(contactData.getAyear());
-    wd.findElement(By.name("address2")).clear();
-    wd.findElement(By.name("address2")).sendKeys(contactData.getAddress2());
-    wd.findElement(By.name("phone2")).clear();
-    wd.findElement(By.name("phone2")).sendKeys(contactData.getPhone2());
-    wd.findElement(By.name("notes")).clear();
-    wd.findElement(By.name("notes")).sendKeys(contactData.getNotes());
+    type(By.name("firstname"), contactData.getFirstname());
+    type(By.name("middlename"), contactData.getMiddlename());
+    type(By.name("lastname"), contactData.getLastname());
+    type(By.name("nickname"), contactData.getNickname());
+    type(By.name("title"), contactData.getTitle());
+    type(By.name("company"), contactData.getCompany());
+    type(By.name("address"), contactData.getAddress());
+    type(By.name("home"), contactData.getHomeTelephone());
+    type(By.name("mobile"), contactData.getMobileTelephone());
+    type(By.name("work"), contactData.getWorkTelephone());
+    type(By.name("fax"), contactData.getFax());
+    type(By.name("email"), contactData.getEmail());
+    type(By.name("email2"), contactData.getEmail2());
+    type(By.name("email3"), contactData.getEmail3());
+    type(By.name("homepage"), contactData.getHomepage());
+    click(By.name("bday"));
+    select("bday", "(.//*[normalize-space(text()) and normalize-space(.)='Birthday:'])[1]/following::option[3]", contactData.getBday());
+    click(By.name("bmonth"));
+    select("bmonth", "(.//*[normalize-space(text()) and normalize-space(.)='Birthday:'])[1]/following::option[43]", contactData.getBmonth());
+    type(By.name("byear"), contactData.getByear());
+    click(By.name("aday"));
+    select("aday", "(.//*[normalize-space(text()) and normalize-space(.)='Anniversary:'])[1]/following::option[12]", contactData.getAday());
+    click(By.name("amonth"));
+    select("amonth", "(.//*[normalize-space(text()) and normalize-space(.)='Anniversary:'])[1]/following::option[41]", contactData.getAmonth());
+    type(By.name("ayear"), contactData.getAyear());
+    type(By.name("address2"), contactData.getAddress2());
+    type(By.name("phone2"), contactData.getPhone2());
+    type(By.name("notes"), contactData.getNotes());
   }
 
   public void addNewContact(String s) {
