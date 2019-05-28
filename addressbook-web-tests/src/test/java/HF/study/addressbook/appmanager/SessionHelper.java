@@ -15,7 +15,7 @@ public class SessionHelper extends HelperBase {
     click(By.xpath("//input[@value='Login']"));
   }
 
-  public void logout(String logout) {
-    wd.findElement(By.linkText(logout)).click();
+  public void logout() {
+    click(By.name("logout"));
   }
 }
