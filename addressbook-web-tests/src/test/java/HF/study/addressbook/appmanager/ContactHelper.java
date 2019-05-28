@@ -3,7 +3,6 @@ package HF.study.addressbook.appmanager;
 import HF.study.addressbook.model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
 
 public class ContactHelper extends HelperBase {
 
@@ -12,7 +11,12 @@ public class ContactHelper extends HelperBase {
   }
 
   public void submitContactCreation() {
-    wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+
+    findElement(By.xpath("(//input[@name='submit'])[2]"));
+  }
+
+  private void findElement(By xpath) {
+    wd.findElement(xpath).click();
   }
 
   public void fillContactForm(ContactData contactData) {
@@ -47,6 +51,26 @@ public class ContactHelper extends HelperBase {
   }
 
   public void addNewContact() {
-    wd.findElement(By.linkText("add new")).click();
+    findElement(By.linkText("add new"));
+  }
+
+  public void chooseContact() {
+    findElement(By.name("selected[]"));
+  }
+
+  public void editContact() {
+    findElement(By.xpath("//img[@alt='Edit']"));
+  }
+
+  public void submitContactModification() {
+    findElement(By.xpath("(//input[@name='update'])[2]"));
+  }
+
+  public void deleteContact() {
+    findElement(By.xpath("//input[@value='Delete']"));
+  }
+
+  public void submitContactDeletion() {
+    wd.switchTo().alert().accept();
   }
 }
