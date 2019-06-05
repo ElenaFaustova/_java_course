@@ -11,7 +11,6 @@ public class ContactHelper extends HelperBase {
   }
 
   public void submitContactCreation() {
-
     findElement(By.xpath("(//input[@name='submit'])[2]"));
   }
 
