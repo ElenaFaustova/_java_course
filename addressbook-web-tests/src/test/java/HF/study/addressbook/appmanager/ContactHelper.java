@@ -59,8 +59,6 @@ public class ContactHelper extends HelperBase {
   }
 
 
-
-
   public void addNewContact() {
     findElement(By.linkText("add new"));
   }
@@ -83,5 +81,15 @@ public class ContactHelper extends HelperBase {
 
   public void submitContactDeletion() {
     wd.switchTo().alert().accept();
+  }
+
+  public void createContact(ContactData contact, boolean creation) {
+    addNewContact();
+    fillContactForm(contact, creation);
+    submitContactCreation();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
