@@ -2,7 +2,10 @@ package HF.study.addressbook.appmanager;
 
 import HF.study.addressbook.model.ContactData;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 public class ContactHelper extends HelperBase {
 
@@ -18,7 +21,7 @@ public class ContactHelper extends HelperBase {
     wd.findElement(xpath).click();
   }
 
-  public void fillContactForm(ContactData contactData) {
+  public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstname());
     type(By.name("middlename"), contactData.getMiddlename());
     type(By.name("lastname"), contactData.getLastname());
@@ -47,7 +50,16 @@ public class ContactHelper extends HelperBase {
     type(By.name("address2"), contactData.getAddress2());
     type(By.name("phone2"), contactData.getPhone2());
     type(By.name("notes"), contactData.getNotes());
+
+    if (creation) {
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
   }
+
+
+
 
   public void addNewContact() {
     findElement(By.linkText("add new"));
