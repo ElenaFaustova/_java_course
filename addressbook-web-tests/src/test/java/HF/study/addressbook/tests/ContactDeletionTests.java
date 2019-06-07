@@ -1,6 +1,7 @@
 package HF.study.addressbook.tests;
 
 import HF.study.addressbook.model.ContactData;
+import HF.study.addressbook.model.GroupData;
 import org.testng.annotations.Test;
 
 public class ContactDeletionTests extends TestBase {
@@ -8,10 +9,13 @@ public class ContactDeletionTests extends TestBase {
   @Test
 
   public void testContactDeletion() {
+    app.getNavigationHelper().gotoGroupPage();
+    app.getGroupHelper().createGroup(new GroupData("test8", null, null));
     app.getNavigationHelper().gotoHomePage();
     if (! app.getContactHelper().isThereAContact()) {
-      app.getContactHelper().createContact(new ContactData("Вася5", "Бублик", "Корочкин", "Булка", "Г-н", "ИП Пекарь", "Волгоград", "123456", "1234567890", "654321", "---", "вася.корочкинбублик@ип-пекарь.ру", "вася@ип-пекарь.ру", "бублик@ип-пекарь.ру", "ип-пекарь.ру", "15", "October", "2000", "10", "July", "2019", "Владивосток", "3333333", "Комментарии", "test1"), true);
+      app.getContactHelper().createContact(new ContactData("Р’Р°СЃСЏ5", "Р‘СѓР±Р»РёРє", "РљРѕСЂРѕС‡РєРёРЅ", "Р‘СѓР»РєР°", "Р“-РЅ", "РРџ РџРµРєР°СЂСЊ", "Р’РѕР»РіРѕРіСЂР°Рґ", "123456", "1234567890", "654321", "---", "РІР°СЃСЏ.РєРѕСЂРѕС‡РєРёРЅР±СѓР±Р»РёРє@РёРї-РїРµРєР°СЂСЊ.СЂСѓ", "РІР°СЃСЏ@РёРї-РїРµРєР°СЂСЊ.СЂСѓ", "Р±СѓР±Р»РёРє@РёРї-РїРµРєР°СЂСЊ.СЂСѓ", "РёРї-РїРµРєР°СЂСЊ.СЂСѓ", "15", "October", "2000", "10", "July", "2019", "Р’Р»Р°РґРёРІРѕСЃС‚РѕРє", "3333333", "РљРѕРјРјРµРЅС‚Р°СЂРёРё", "test8"), true);
     }
+    app.getNavigationHelper().gotoHomePage();
     app.getContactHelper().chooseContact();
     app.getContactHelper().deleteContact();
     app.getContactHelper().submitContactDeletion();
