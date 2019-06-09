@@ -1,9 +1,7 @@
 package HF.study.addressbook.appmanager;
 
 import HF.study.addressbook.model.ContactData;
-import HF.study.addressbook.model.GroupData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -94,4 +92,8 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
+  public int getConactCount() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
 }
+
