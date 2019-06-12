@@ -1,10 +1,15 @@
 package HF.study.addressbook.appmanager;
 
 import HF.study.addressbook.model.ContactData;
+import HF.study.addressbook.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -62,12 +67,12 @@ public class ContactHelper extends HelperBase {
     findElement(By.linkText("add new"));
   }
 
-  public void chooseContact() {
-    findElement(By.name("selected[]"));
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
-  public void editContact() {
-    findElement(By.xpath("//img[@alt='Edit']"));
+  public void editContact(int index) {
+    wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
   }
 
   public void submitContactModification() {
@@ -95,5 +100,15 @@ public class ContactHelper extends HelperBase {
   public int getConactCount() {
     return wd.findElements(By.name("entry")).size();
   }
-}
 
+  public List<ContactData> getContactList() {
+    List<ContactData> contacts = new ArrayList<ContactData>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for (WebElement element : elements) {
+      String name = element.getText();
+      ContactData contact = new ContactData (null, null, "Корочкин", null, null, null, null, null, null, null, "---", null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+      contacts.add(contact);
+    }
+    return contacts;
+  }
+}
