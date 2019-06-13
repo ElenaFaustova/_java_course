@@ -2,6 +2,7 @@ package HF.study.addressbook.appmanager;
 
 import HF.study.addressbook.model.ContactData;
 import HF.study.addressbook.model.GroupData;
+import com.google.common.collect.Iterables;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +11,9 @@ import org.testng.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
+
+import static org.openqa.selenium.By.tagName;
 
 public class ContactHelper extends HelperBase {
 
@@ -101,15 +105,27 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("entry")).size();
   }
 
+  public void isContactDeleted() {
+    wd.findElement(By.cssSelector("div.msgbox"));
+  }
+
+  public void isContactModified() {
+    wd.findElement(By.cssSelector("div.msgbox"));
+  }
+
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
-      String name = element.getText();
-      String id = element.findElement(By.tagName("input")).getAttribute("value");
-      ContactData contact = new ContactData (id,null, null, "Корочкин", null, null, null, null, null, null, null, "---", null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+      List<WebElement> cells = wd.findElements(By.tagName("td"));
+      String lastname = cells.get(1).getText();
+      String firstname = cells.get(2).getText();
+
+      String id = element.findElement(tagName("input")).getAttribute("value");
+      ContactData contact = new ContactData(id, firstname, null, lastname, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
       contacts.add(contact);
     }
     return contacts;
   }
 }
+
