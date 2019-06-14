@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 
+import static org.openqa.selenium.By.cssSelector;
 import static org.openqa.selenium.By.tagName;
 
 public class ContactHelper extends HelperBase {
@@ -117,11 +118,11 @@ public class ContactHelper extends HelperBase {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
-      List<WebElement> cells = wd.findElements(By.tagName("td"));
+      List<WebElement>  cells = element.findElement(By.className("center")).findElement(By.tagName("td"));
       String lastname = cells.get(1).getText();
       String firstname = cells.get(2).getText();
 
-      String id = element.findElement(tagName("input")).getAttribute("value");
+      String id = element.findElement(By.tagName("input")).getAttribute("value");
       ContactData contact = new ContactData(id, firstname, null, lastname, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
       contacts.add(contact);
     }
