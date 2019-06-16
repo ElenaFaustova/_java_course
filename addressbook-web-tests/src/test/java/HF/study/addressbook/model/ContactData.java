@@ -3,7 +3,7 @@ package HF.study.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-  private final String id;
+  private int id;
   private final String firstname;
   private final String middlename;
   private final String lastname;
@@ -31,7 +31,7 @@ public class ContactData {
   private final String group;
 
   public ContactData(String firstname, String middlename, String lastname, String nickname, String title, String company, String address, String homeTelephone, String mobileTelephone, String workTelephone, String fax, String email, String email2, String email3, String homepage, String bday, String bmonth, String byear, String aday, String amonth, String ayear, String address2, String phone2, String notes, String group) {
-    this.id = null;
+    this.id = Integer.MAX_VALUE;
     this.firstname = firstname;
     this.middlename = null;
     this.lastname = lastname;
@@ -56,11 +56,11 @@ public class ContactData {
     this.address2 = null;
     this.phone2 = null;
     this.notes = null;
-    this.group = null;
+    this.group = group;
   }
 
 
-  public ContactData(String id, String firstname, String middlename, String lastname, String nickname, String title, String company, String address, String homeTelephone, String mobileTelephone, String workTelephone, String fax, String email, String email2, String email3, String homepage, String bday, String bmonth, String byear, String aday, String amonth, String ayear, String address2, String phone2, String notes, String group) {
+  public ContactData(int id, String firstname, String middlename, String lastname, String nickname, String title, String company, String address, String homeTelephone, String mobileTelephone, String workTelephone, String fax, String email, String email2, String email3, String homepage, String bday, String bmonth, String byear, String aday, String amonth, String ayear, String address2, String phone2, String notes, String group) {
     this.id = id;
     this.firstname = firstname;
     this.middlename = middlename;
@@ -89,7 +89,11 @@ public class ContactData {
     this.group = group;
   }
 
-  public String getId() {
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public int getId() {
     return id;
   }
 
@@ -205,13 +209,12 @@ public class ContactData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return Objects.equals(id, that.id) &&
-            Objects.equals(firstname, that.firstname) &&
+    return Objects.equals(firstname, that.firstname) &&
             Objects.equals(lastname, that.lastname);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstname, lastname);
+    return Objects.hash(firstname, lastname);
   }
 }
