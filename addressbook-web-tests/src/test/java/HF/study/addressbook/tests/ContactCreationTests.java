@@ -3,26 +3,29 @@ package HF.study.addressbook.tests;
 import HF.study.addressbook.model.ContactData;
 import HF.study.addressbook.model.GroupData;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
+  @BeforeMethod
+  public void ensurePreconditions() {
+    app.goTo().groupPage();
+    app.group().create(new GroupData("test8", null, null));
+    app.goTo().homePage();
+  }
+
+  //игнор теста: @Test(enabled = false)
   @Test
   public void testContactCreation() throws Exception {
-    app.getNavigationHelper().gotoGroupPage();
-    app.getGroupHelper().createGroup(new GroupData("test8", null, null));
-    app.getNavigationHelper().gotoHomePage();
-    List<ContactData> before = app.getContactHelper().getContactList();
+    List<ContactData> before = app.contact().list();
     ContactData contact = new ContactData("Вася3", null, "Корочкин3", null, null, null, null, null, null, null, null, null, null, null, null, "15", "October", "2000", "10", "July", "2019", null, null, null, "test8");
-    app.getContactHelper().addNewContact();
-    app.getContactHelper().fillContactForm(contact, true);
-    app.getContactHelper().submitContactCreation();
-    app.getNavigationHelper().gotoHomePage();
-    List<ContactData> after = app.getContactHelper().getContactList();
+    app.contact().create(contact, true);
+    app.goTo().homePage();
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size() + 1);
 
     //int max = 0;
@@ -39,7 +42,7 @@ public class ContactCreationTests extends TestBase {
     after.sort(byId);
     Assert.assertEquals(before, after);
 
-    app.getSessionHelper().logout();
+    app.session().logout();
   }
 
 }

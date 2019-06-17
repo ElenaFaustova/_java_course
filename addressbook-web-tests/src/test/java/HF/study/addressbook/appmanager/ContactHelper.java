@@ -92,10 +92,24 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public void createContact(ContactData contact, boolean creation) {
+  public void create(ContactData contact, boolean creation) {
     addNewContact();
-    fillContactForm(contact, creation);
+    fillContactForm(contact, true);
     submitContactCreation();
+  }
+
+  public void delete(int index) {
+    selectContact(index);
+    deleteContact();
+    submitContactDeletion();
+    isContactDeleted();
+  }
+
+  public void modify(int index, ContactData contact) {
+    editContact(index);
+    fillContactForm(contact, false);
+    submitContactModification();
+    isContactModified();
   }
 
   public boolean isThereAContact() {
@@ -114,7 +128,7 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.cssSelector("div.msgbox"));
   }
 
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
 
