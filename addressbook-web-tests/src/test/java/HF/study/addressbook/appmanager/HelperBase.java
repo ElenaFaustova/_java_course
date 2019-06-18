@@ -31,10 +31,9 @@ public class HelperBase {
 // ! - отрицание.
 
 
-  protected void select(String bday, String s, String option) {
-    new Select(wd.findElement(By.name(bday))).selectByVisibleText(option);
-
-  }
+  //protected void select(String bday, String s, String option) {
+    //new Select(wd.findElement(By.name(bday))).selectByVisibleText(option);
+  //}
 
   public boolean isElementPresent(By by) {
     try {

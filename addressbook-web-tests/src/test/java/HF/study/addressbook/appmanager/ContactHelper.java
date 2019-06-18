@@ -76,6 +76,10 @@ public class ContactHelper extends HelperBase {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
 
+  public void select(String dropdown, String s, String option) {
+    new Select (wd.findElement(By.name(dropdown))).selectByVisibleText(option);
+  }
+
   public void editContact(int index) {
     wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
   }
@@ -139,7 +143,7 @@ public class ContactHelper extends HelperBase {
       String lastname = element.findElement(By.xpath(".//td[2]")).getText();
       String firstname = element.findElement(By.xpath(".//td[3]")).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      ContactData contact = new ContactData(id, firstname, null, lastname, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+      ContactData contact = new ContactData().withId(id).withFirstname(firstname).withLastname(lastname);
       contacts.add(contact);
     }
     return contacts;
