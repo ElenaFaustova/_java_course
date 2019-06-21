@@ -1,20 +1,16 @@
 package HF.study.addressbook.appmanager;
 
 import HF.study.addressbook.model.ContactData;
-import HF.study.addressbook.model.GroupData;
-import com.google.common.collect.Iterables;
+import HF.study.addressbook.model.Contacts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
-
-import static org.openqa.selenium.By.cssSelector;
-import static org.openqa.selenium.By.tagName;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -76,12 +72,16 @@ public class ContactHelper extends HelperBase {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
 
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+  }
+
   public void select(String dropdown, String s, String option) {
     new Select (wd.findElement(By.name(dropdown))).selectByVisibleText(option);
   }
 
-  public void editContact(int index) {
-    wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
+  public void editContactById(int id) {
+    wd.findElement(By.xpath(".//a[@href='edit.php?id=" + id + "']")).click();
   }
 
   public void submitContactModification() {
@@ -102,15 +102,15 @@ public class ContactHelper extends HelperBase {
     submitContactCreation();
   }
 
-  public void delete(int index) {
-    selectContact(index);
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
     deleteContact();
     submitContactDeletion();
     isContactDeleted();
   }
 
-  public void modify(int index, ContactData contact) {
-    editContact(index);
+  public void modify(ContactData contact) {
+    editContactById(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
     isContactModified();
@@ -132,14 +132,10 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.cssSelector("div.msgbox"));
   }
 
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
+  public Contacts all() {
+    Contacts contacts = new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
-
     for (WebElement element : elements) {
-      //List<WebElement>  cells = element.findElements(By.xpath(".//*[normalize-space(text()) and normalize-space(.)='import'])[1]/following::td[2]"));
-      //String lastname = cells.get(1).getText();
-      //String firstname = cells.get(2).getText();
       String lastname = element.findElement(By.xpath(".//td[2]")).getText();
       String firstname = element.findElement(By.xpath(".//td[3]")).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
@@ -148,5 +144,9 @@ public class ContactHelper extends HelperBase {
     }
     return contacts;
   }
+
 }
 
+//List<WebElement>  cells = element.findElements(By.xpath(".//*[normalize-space(text()) and normalize-space(.)='import'])[1]/following::td[2]"));
+//String lastname = cells.get(1).getText();
+//String firstname = cells.get(2).getText();

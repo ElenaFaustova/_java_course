@@ -1,12 +1,13 @@
 package HF.study.addressbook.tests;
 
 import HF.study.addressbook.model.ContactData;
+import HF.study.addressbook.model.Contacts;
 import HF.study.addressbook.model.GroupData;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.List;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactDeletionTests extends TestBase {
 
@@ -14,10 +15,11 @@ public class ContactDeletionTests extends TestBase {
 
   public void ensurePreconditions() {
     app.goTo().homePage();
-    if (app.contact().list().size() == 0) {
+    if (app.contact().all().size() == 0) {
       app.goTo().groupPage();
       app.group().create(new GroupData().withName("test8"));
-      app.contact().create(new ContactData().withFirstname("Вася3").withLastname("Корочкин3").withBday("10").withBmonth("May").withAday("11").withAmonth("June").withGroup("test8"),true);
+      app.contact().create(new ContactData().withFirstname("Вася3").withLastname("Корочкин3")
+              .withBday("10").withBmonth("May").withAday("11").withAmonth("June").withGroup("test8"),true);
       app.goTo().homePage();
     }
   }
@@ -25,15 +27,14 @@ public class ContactDeletionTests extends TestBase {
   @Test
 
   public void testContactDeletion() {
-    List<ContactData> before = app.contact().list();
+    Contacts before = app.contact().all();
+    ContactData deletedContact = before.iterator().next();
     int index = before.size() - 1;
-    app.contact().delete(index);
+    app.contact().delete(deletedContact);
     app.goTo().homePage();
-    List<ContactData> after = app.contact().list();
-    Assert.assertEquals(after.size(), before.size() - 1);
-
-    before.remove(index);
-    Assert.assertEquals(before, after);
+    Contacts after = app.contact().all();
+    assertThat(after.size(), equalTo(before.size() - 1));
+    assertThat(after, equalTo(before.without(deletedContact)));
 
     app.session().logout();
   }
