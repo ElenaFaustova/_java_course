@@ -14,10 +14,12 @@ public class ContactData {
   private String homeTelephone;
   private String mobileTelephone;
   private String workTelephone;
+  private String allPhones;
   private String fax;
   private String email;
   private String email2;
   private String email3;
+  private String allEmails;
   private String homepage;
   private String bday;
   private String bmonth;
@@ -85,6 +87,11 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+
   public ContactData withFax(String fax) {
     this.fax = fax;
     return this;
@@ -102,6 +109,11 @@ public class ContactData {
 
   public ContactData withEmail3(String email3) {
     this.email3 = email3;
+    return this;
+  }
+
+  public ContactData withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
     return this;
   }
 
@@ -204,6 +216,8 @@ public class ContactData {
     return workTelephone;
   }
 
+  public String getAllPhones() { return allPhones;   }
+
   public String getFax() {
     return fax;
   }
@@ -219,6 +233,8 @@ public class ContactData {
   public String getEmail3() {
     return email3;
   }
+
+  public String getAllEmails() { return allEmails;   }
 
   public String getHomepage() {
     return homepage;
