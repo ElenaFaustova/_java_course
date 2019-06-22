@@ -3,15 +3,8 @@ package HF.study.addressbook.tests;
 import HF.study.addressbook.model.ContactData;
 import HF.study.addressbook.model.Contacts;
 import HF.study.addressbook.model.GroupData;
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -40,8 +33,8 @@ public class ContactModificationTests extends TestBase {
             .withBday("10").withBmonth("May").withAday("11").withAmonth("June");
     app.contact().modify(contact);
     app.goTo().homePage();
+    assertThat(app.contact().count(), equalTo(before.size()));
     Contacts after = app.contact().all();
-    assertThat(after.size(), equalTo(before.size()));
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
 
     app.session().logout();

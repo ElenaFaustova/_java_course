@@ -26,8 +26,8 @@ public class ContactCreationTests extends TestBase {
             .withBday("10").withBmonth("May").withAday("11").withAmonth("June").withGroup("test8");
     app.contact().create(contact, true);
     app.goTo().homePage();
+    assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.contact().all();
-    assertThat(after.size(), equalTo(before.size() + 1));
     assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
 
     app.session().logout();

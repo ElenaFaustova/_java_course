@@ -12,6 +12,7 @@
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/tests/ContactCreationTests.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/tests/ContactDeletionTests.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/tests/ContactModificationTests.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/tests/ContactPhoneTests.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/tests/GroupCreationTests.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sandbox/src/main/java/HF/study/sandbox/Collections.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sandbox/src/main/java/HF/study/sandbox/DistanceBetweenTwoPoints2D.java" charset="UTF-8" />

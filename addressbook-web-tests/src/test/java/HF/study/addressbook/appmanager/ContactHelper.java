@@ -2,6 +2,7 @@ package HF.study.addressbook.appmanager;
 
 import HF.study.addressbook.model.ContactData;
 import HF.study.addressbook.model.Contacts;
+import HF.study.addressbook.model.Groups;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -77,7 +78,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void select(String dropdown, String s, String option) {
-    new Select (wd.findElement(By.name(dropdown))).selectByVisibleText(option);
+    new Select(wd.findElement(By.name(dropdown))).selectByVisibleText(option);
   }
 
   public void editContactById(int id) {
@@ -100,12 +101,14 @@ public class ContactHelper extends HelperBase {
     addNewContact();
     fillContactForm(contact, true);
     submitContactCreation();
+    contactCache = null;
   }
 
   public void delete(ContactData contact) {
     selectContactById(contact.getId());
     deleteContact();
     submitContactDeletion();
+    contactCache = null;
     isContactDeleted();
   }
 
@@ -113,6 +116,7 @@ public class ContactHelper extends HelperBase {
     editContactById(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
+    contactCache = null;
     isContactModified();
   }
 
@@ -120,7 +124,7 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public int getConactCount() {
+  public int count() {
     return wd.findElements(By.name("entry")).size();
   }
 
@@ -132,21 +136,40 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.cssSelector("div.msgbox"));
   }
 
+  private Contacts contactCache = null;
+
   public Contacts all() {
-    Contacts contacts = new Contacts();
+    if (contactCache != null) {
+      return new Contacts(contactCache);
+    }
+    contactCache = new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
-      String lastname = element.findElement(By.xpath(".//td[2]")).getText();
-      String firstname = element.findElement(By.xpath(".//td[3]")).getText();
+      //String lastname = element.findElement(By.xpath(".//td[2]")).getText();
+      //String firstname = element.findElement(By.xpath(".//td[3]")).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      ContactData contact = new ContactData().withId(id).withFirstname(firstname).withLastname(lastname);
-      contacts.add(contact);
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+      String lastname = cells.get(1).getText();
+      String firstname = cells.get(2).getText();
+      String[] phones = cells.get(5).getText().split("\n");
+      contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname)
+              .withHomeTelephone(phones[0]).withMobileTelephone(phones[1]).withWorkTelephone(phones[2]));
     }
-    return contacts;
+    return new Contacts(contactCache);
   }
 
+  public ContactData infoFromEditForm(ContactData contact) {
+    editContactById(contact.getId());
+    String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+    String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+    String home = wd.findElement(By.name("home")).getAttribute("value");
+    String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+    String work = wd.findElement(By.name("work")).getAttribute("value");
+    wd.navigate().back();
+    return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname).withHomeTelephone(home).withMobileTelephone(mobile).withWorkTelephone(work);
+  }
 }
 
-//List<WebElement>  cells = element.findElements(By.xpath(".//*[normalize-space(text()) and normalize-space(.)='import'])[1]/following::td[2]"));
+//List<WebElement>  cells = element.findElements(By.tagName("td"));
 //String lastname = cells.get(1).getText();
 //String firstname = cells.get(2).getText();
