@@ -19,7 +19,7 @@ public class ContactModificationTests extends TestBase {
       app.goTo().groupPage();
       app.group().create(new GroupData().withName("test8"));
       app.contact().create(new ContactData().withFirstname("Вася3").withLastname("Корочкин3")
-              .withBday("10").withBmonth("May").withAday("11").withAmonth("June").withGroup("test8"),true);
+              .withGroup("test8"),true);
       app.goTo().homePage();
     }
   }
@@ -29,8 +29,7 @@ public class ContactModificationTests extends TestBase {
   public void testContactModification() {
     Contacts before = app.contact().all();
     ContactData modifiedContact = before.iterator().next();
-    ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Вася7").withLastname("Корочкин7")
-            .withBday("10").withBmonth("May").withAday("11").withAmonth("June");
+    ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Вася7").withLastname("Корочкин7");
     app.contact().modify(contact);
     app.goTo().homePage();
     assertThat(app.contact().count(), equalTo(before.size()));

@@ -43,19 +43,16 @@ public class ContactHelper extends HelperBase {
     type(By.name("email2"), contactData.getEmail2());
     type(By.name("email3"), contactData.getEmail3());
     type(By.name("homepage"), contactData.getHomepage());
-    click(By.name("bday"));
-    select("bday", "(.//*[normalize-space(text()) and normalize-space(.)='Birthday:'])[1]/following::option[3]", contactData.getBday());
-    click(By.name("bmonth"));
-    select("bmonth", "(.//*[normalize-space(text()) and normalize-space(.)='Birthday:'])[1]/following::option[43]", contactData.getBmonth());
+    //select("bday", "(.//*[normalize-space(text()) and normalize-space(.)='Birthday:'])[1]/following::option[3]", contactData.getBday());
+    //select("bmonth", "(.//*[normalize-space(text()) and normalize-space(.)='Birthday:'])[1]/following::option[43]", contactData.getBmonth());
     type(By.name("byear"), contactData.getByear());
-    click(By.name("aday"));
-    select("aday", "(.//*[normalize-space(text()) and normalize-space(.)='Anniversary:'])[1]/following::option[12]", contactData.getAday());
-    click(By.name("amonth"));
-    select("amonth", "(.//*[normalize-space(text()) and normalize-space(.)='Anniversary:'])[1]/following::option[41]", contactData.getAmonth());
+    //select("aday", "(.//*[normalize-space(text()) and normalize-space(.)='Anniversary:'])[1]/following::option[12]", contactData.getAday());
+    //select("amonth", "(.//*[normalize-space(text()) and normalize-space(.)='Anniversary:'])[1]/following::option[41]", contactData.getAmonth());
     type(By.name("ayear"), contactData.getAyear());
     type(By.name("address2"), contactData.getAddress2());
     type(By.name("phone2"), contactData.getPhone2());
     type(By.name("notes"), contactData.getNotes());
+    attach (By.name("photo"), contactData.getPhoto());
 
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
@@ -69,17 +66,13 @@ public class ContactHelper extends HelperBase {
     findElement(By.linkText("add new"));
   }
 
-  public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
-  }
-
   public void selectContactById(int id) {
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
-  public void select(String dropdown, String s, String option) {
-    new Select(wd.findElement(By.name(dropdown))).selectByVisibleText(option);
-  }
+  //public void select(String dropdown, String s, String option) {
+    //new Select(wd.findElement(By.name(dropdown))).selectByVisibleText(option);
+  //}
 
   public void editContactById(int id) {
     wd.findElement(By.xpath(".//a[@href='edit.php?id=" + id + "']")).click();

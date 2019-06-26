@@ -43,6 +43,7 @@ public class GroupHelper extends HelperBase {
 
   }
 
+
   public void initGroupModification() {
     click(By.name("edit"));
   }
@@ -100,4 +101,4 @@ public class GroupHelper extends HelperBase {
     return new Groups(groupCache);
   }
 
-}
+ }

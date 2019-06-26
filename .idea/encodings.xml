@@ -7,6 +7,7 @@
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/appmanager/HelperBase.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/appmanager/NavigationHelper.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/appmanager/SessionHelper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/generators/ContactDataGenerator.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/model/ContactData.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/model/GroupData.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/tests/ContactCreationTests.java" charset="UTF-8" />
