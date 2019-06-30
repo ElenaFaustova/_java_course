@@ -5,5 +5,19 @@
     "mobileTelephone": "110",
     "group": "test8",
     "photo": {}
+  },
+  {
+    "firstname": "Vasia1",
+    "lastname": "Korochkin1",
+    "mobileTelephone": "111",
+    "group": "test8",
+    "photo": {}
+  },
+  {
+    "firstname": "Vasia2",
+    "lastname": "Korochkin2",
+    "mobileTelephone": "112",
+    "group": "test8",
+    "photo": {}
   }
 ]
