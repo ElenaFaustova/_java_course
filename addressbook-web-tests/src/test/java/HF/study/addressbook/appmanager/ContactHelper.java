@@ -27,7 +27,7 @@ public class ContactHelper extends HelperBase {
     wd.findElement(xpath).click();
   }
 
-  public void fillContactForm(ContactData contactData, boolean creation) {
+  public void fillContactForm(ContactData contactData, boolean creation, boolean creationWithDates) {
     type(By.name("firstname"), contactData.getFirstname());
     type(By.name("middlename"), contactData.getMiddlename());
     type(By.name("lastname"), contactData.getLastname());
@@ -59,6 +59,15 @@ public class ContactHelper extends HelperBase {
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
+
+    if (creationWithDates) {
+      new Select(wd.findElement(By.name("bday"))).selectByVisibleText(contactData.getBday());
+      new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(contactData.getBmonth());
+      new Select(wd.findElement(By.name("aday"))).selectByVisibleText(contactData.getAday());
+      new Select(wd.findElement(By.name("amonth"))).selectByVisibleText(contactData.getAmonth());
+
+    }
+
   }
 
 
@@ -90,9 +99,9 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public void create(ContactData contact, boolean creation) {
+  public void create(ContactData contact, boolean creation, boolean creationWithDates) {
     addNewContact();
-    fillContactForm(contact, true);
+    fillContactForm(contact, true, false);
     submitContactCreation();
     contactCache = null;
   }
@@ -107,7 +116,7 @@ public class ContactHelper extends HelperBase {
 
   public void modify(ContactData contact) {
     editContactById(contact.getId());
-    fillContactForm(contact, false);
+    fillContactForm(contact, false, false);
     submitContactModification();
     contactCache = null;
     isContactModified();
@@ -171,7 +180,3 @@ public class ContactHelper extends HelperBase {
             .withEmail(email).withEmail2(email2).withEmail3(email3);
   }
 }
-
-//List<WebElement>  cells = element.findElements(By.tagName("td"));
-//String lastname = cells.get(1).getText();
-//String firstname = cells.get(2).getText();

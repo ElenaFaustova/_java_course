@@ -1,18 +1,27 @@
 package HF.study.addressbook.model;
 
+import com.google.gson.annotations.Expose;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 import java.io.File;
 import java.util.Objects;
 
+@XStreamAlias("contacts")
 public class ContactData {
+  @XStreamOmitField
   private int id = Integer.MAX_VALUE;
+  @Expose
   private String firstname;
   private String middlename;
+  @Expose
   private String lastname;
   private String nickname;
   private String title;
   private String company;
   private String address;
   private String homeTelephone;
+  @Expose
   private String mobileTelephone;
   private String workTelephone;
   private String allPhones;
@@ -31,7 +40,9 @@ public class ContactData {
   private String address2;
   private String phone2;
   private String notes;
+  @Expose
   private String group;
+  @Expose
   private File photo;
 
 

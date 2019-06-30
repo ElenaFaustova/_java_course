@@ -2,13 +2,12 @@ package HF.study.addressbook.appmanager;
 
 import HF.study.addressbook.model.GroupData;
 import HF.study.addressbook.model.Groups;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class GroupHelper extends HelperBase {
 
@@ -41,6 +40,16 @@ public class GroupHelper extends HelperBase {
   public void selectGroupById(int id) {
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
 
+  }
+
+  public boolean findGroupByName(String gname) {
+    //wd.findElement(By.cssSelector("span.group")).getText();
+    List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+    for (WebElement element : elements) {
+      String groupname = element.getText();
+      System.out.println("Имя группы = " + groupname);
+    }
+    return true;
   }
 
 
