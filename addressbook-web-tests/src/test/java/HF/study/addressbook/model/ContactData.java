@@ -3,51 +3,125 @@ package HF.study.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
 
+@Entity
+@Table(name = "addressbook")
 @XStreamAlias("contacts")
 public class ContactData {
+  @Id
+  @Column(name = "id")
   @XStreamOmitField
   private int id = Integer.MAX_VALUE;
+
   @Expose
+  @Column(name = "firstname")
   private String firstname;
+
+  @Column(name = "middlename")
   private String middlename;
   @Expose
+  @Column(name = "lastname")
   private String lastname;
+
+  @Column(name = "nickname")
   private String nickname;
+
+  @Column(name = "title")
   private String title;
+
+  @Column(name = "company")
   private String company;
+
+  @Column(name = "address")
+  @Type(type = "text")
   private String address;
-  private String homeTelephone;
+
+  @Column(name = "home")
+  @Type(type = "text")
+  private String home;
+
   @Expose
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String mobileTelephone;
+
+  @Column(name = "work")
+  @Type(type = "text")
   private String workTelephone;
+
+  @Transient
   private String allPhones;
+
+  @Column(name = "fax")
+  @Type(type = "text")
   private String fax;
+
+  @Column(name = "email")
+  @Type(type = "text")
   private String email;
+
+  @Column(name = "email2")
+  @Type(type = "text")
   private String email2;
+
+  @Column(name = "email3")
+  @Type(type = "text")
   private String email3;
+
+  @Transient
   private String allEmails;
+
+  @Column(name = "homepage")
+  @Type(type = "text")
   private String homepage;
+
+  @Transient
   private String bday;
+
+  @Transient
   private String bmonth;
+
+  @Column(name = "byear")
   private String byear;
+
+  @Transient
   private String aday;
+
+  @Transient
   private String amonth;
+
+  @Column(name = "ayear")
   private String ayear;
+
+  @Column(name = "address2")
+  @Type(type = "text")
   private String address2;
+
+  @Column(name = "phone2")
+  @Type(type = "text")
   private String phone2;
+
+  @Column(name = "notes")
+  @Type(type = "text")
   private String notes;
+
   @Expose
+  @Transient
   private String group;
+
   @Expose
-  private File photo;
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
 
 
   public ContactData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
@@ -91,8 +165,8 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withHomeTelephone(String homeTelephone) {
-    this.homeTelephone = homeTelephone;
+  public ContactData withHomeTelephone(String home) {
+    this.home = home;
     return this;
   }
 
@@ -223,8 +297,8 @@ public class ContactData {
     return address;
   }
 
-  public String getHomeTelephone() {
-    return homeTelephone;
+  public String getHome() {
+    return home;
   }
 
   public String getMobileTelephone() {
@@ -297,18 +371,6 @@ public class ContactData {
 
   public String getGroup() { return group; }
 
-  public File getPhoto() { return photo;  }
-
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id='" + id + '\'' +
-            ", firstname='" + firstname + '\'' +
-            ", lastname='" + lastname + '\'' +
-            '}';
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -323,4 +385,17 @@ public class ContactData {
   public int hashCode() {
     return Objects.hash(id, firstname, lastname);
   }
+
+  public File getPhoto() { return new File(photo);  }
+
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id='" + id + '\'' +
+            ", firstname='" + firstname + '\'' +
+            ", lastname='" + lastname + '\'' +
+            '}';
+  }
+
 }

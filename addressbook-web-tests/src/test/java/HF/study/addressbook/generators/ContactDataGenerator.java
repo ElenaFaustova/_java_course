@@ -80,12 +80,12 @@ public class ContactDataGenerator {
 
   private List<ContactData> generateContacts(int count) {
     List<ContactData> contacts = new ArrayList<ContactData>();
-    File photo = new File("src/test/resources/Avatar.png");
-    //File folder = new File("src/test/resources/avatars");
-    //File[] listOfFiles = folder.listFiles();
+    //File photo = new File("src/test/resources/Avatar.png");
+    File folder = new File("src/test/resources/avatars");
+    File[] listOfFiles = folder.listFiles();
     for (int i = 0; i < count; i++) {
       contacts.add(new ContactData().withFirstname(String.format("Vasia%s", i))
-              .withLastname(String.format("Korochkin%s", i)).withMobileTelephone(String.format("11%s", i)).withGroup("test8").withPhoto(photo));
+              .withLastname(String.format("Korochkin%s", i)).withMobileTelephone(String.format("11%s", i)).withGroup("test8").withPhoto(new File("src/test/resources/avatars/Avatar2.png")));
     }
 
     return contacts;

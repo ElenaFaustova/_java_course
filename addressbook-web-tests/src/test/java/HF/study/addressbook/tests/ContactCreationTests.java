@@ -71,10 +71,7 @@ public class ContactCreationTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions() {
     app.goTo().groupPage();
-    if (!app.group().findGroupByName("test8")) {
-      app.group().create(new GroupData().withName("test8"));
-      app.goTo().homePage();
-    }
+    app.group().create(new GroupData().withName("test8"));
     app.goTo().homePage();
   }
 
@@ -82,11 +79,12 @@ public class ContactCreationTests extends TestBase {
   //игнор теста: @Test(enabled = false)
   @Test(dataProvider = "validContactsXML")
   public void testContactCreation(ContactData contact) throws Exception {
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
+    app.goTo().homePage();
     app.contact().create(contact, true, false);
     app.goTo().homePage();
     assertThat(app.contact().count(), equalTo(before.size() + 1));
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
 
     app.session().logout();

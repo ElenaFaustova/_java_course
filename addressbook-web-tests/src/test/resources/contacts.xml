@@ -4,6 +4,20 @@
     <lastname>Korochkin0</lastname>
     <mobileTelephone>110</mobileTelephone>
     <group>test8</group>
-    <photo>src\test\resources\Avatar.png</photo>
+    <photo>src\test\resources\avatars\Avatar2.png</photo>
+  </contacts>
+  <contacts>
+    <firstname>Vasia1</firstname>
+    <lastname>Korochkin1</lastname>
+    <mobileTelephone>111</mobileTelephone>
+    <group>test8</group>
+    <photo>src\test\resources\avatars\Avatar2.png</photo>
+  </contacts>
+  <contacts>
+    <firstname>Vasia2</firstname>
+    <lastname>Korochkin2</lastname>
+    <mobileTelephone>112</mobileTelephone>
+    <group>test8</group>
+    <photo>src\test\resources\avatars\Avatar2.png</photo>
   </contacts>
 </list>

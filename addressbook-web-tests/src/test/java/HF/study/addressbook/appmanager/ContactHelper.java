@@ -2,16 +2,13 @@ package HF.study.addressbook.appmanager;
 
 import HF.study.addressbook.model.ContactData;
 import HF.study.addressbook.model.Contacts;
-import HF.study.addressbook.model.Groups;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -35,7 +32,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("title"), contactData.getTitle());
     type(By.name("company"), contactData.getCompany());
     type(By.name("address"), contactData.getAddress());
-    type(By.name("home"), contactData.getHomeTelephone());
+    type(By.name("home"), contactData.getHome());
     type(By.name("mobile"), contactData.getMobileTelephone());
     type(By.name("work"), contactData.getWorkTelephone());
     type(By.name("fax"), contactData.getFax());
