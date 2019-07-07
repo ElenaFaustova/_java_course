@@ -3,6 +3,7 @@ package HF.study.addressbook.tests;
 import HF.study.addressbook.model.ContactData;
 import HF.study.addressbook.model.Contacts;
 import HF.study.addressbook.model.GroupData;
+import HF.study.addressbook.model.Groups;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
@@ -31,8 +32,10 @@ public class ContactCreationTests extends TestBase {
     BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.csv")));
     String line = reader.readLine();
     while (line != null) {
+      Groups groups = app.db().groups();
       String[] split = line.split(";");
-      list.add(new Object[] {new ContactData().withFirstname(split[0]).withLastname(split[1]).withMobileTelephone(split[2]).withPhoto(photo).withGroup("test8")});
+      list.add(new Object[] {new ContactData().withFirstname(split[0]).withLastname(split[1])
+              .withMobileTelephone(split[2]).withPhoto(photo).inGroup(groups.iterator().next())});
       line = reader.readLine();
     }
     return list.iterator();
@@ -86,8 +89,7 @@ public class ContactCreationTests extends TestBase {
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
-
-    app.session().logout();
+    verifyContactListInUI();
   }
 
 

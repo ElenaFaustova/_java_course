@@ -2,6 +2,7 @@ package HF.study.addressbook.tests;
 
 import HF.study.addressbook.model.ContactData;
 import HF.study.addressbook.model.GroupData;
+import HF.study.addressbook.model.Groups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -18,12 +19,13 @@ public class ContactDetailsTests extends TestBase {
   public void ensurePreconditions() {
     app.goTo().homePage();
     if (app.contact().all().size() == 0) {
+      Groups groups = app.db().groups();
       app.goTo().groupPage();
       app.group().create(new GroupData().withName("test8"));
       app.contact().create(new ContactData().withFirstname("Вася3").withLastname("Корочкин3")
-              .withAddress("Москва").withEmail("1@1").withEmail2("2@2").withEmail3("3@3")
+            .withAddress("Москва").withEmail("1@1").withEmail2("2@2").withEmail3("3@3")
               .withHomeTelephone("111").withMobileTelephone("222").withWorkTelephone("333")
-              .withGroup("test8"),true, false);
+              .inGroup(groups.iterator().next()),true, false);
       app.goTo().homePage();
     }
   }

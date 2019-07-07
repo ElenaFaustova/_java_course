@@ -3,6 +3,7 @@ package HF.study.addressbook.tests;
 import HF.study.addressbook.model.ContactData;
 import HF.study.addressbook.model.Contacts;
 import HF.study.addressbook.model.GroupData;
+import HF.study.addressbook.model.Groups;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -17,11 +18,13 @@ public class ContactModificationTests extends TestBase {
 
   public void ensurePreconditions() {
     if (app.db().contacts().size() == 0) {
+      Groups groups = app.db().groups();
+      File photo = new File("src/test/resources/Avatar.png");
       app.goTo().groupPage();
       app.group().create(new GroupData().withName("test8"));
       app.goTo().homePage();
       app.contact().create(new ContactData().withFirstname("Вася3").withLastname("Корочкин3")
-              .withGroup("test8"), true, false);
+              .inGroup(groups.iterator().next()).withPhoto(photo), true, false);
       app.goTo().homePage();
     }
   }
@@ -39,8 +42,7 @@ public class ContactModificationTests extends TestBase {
     assertThat(app.contact().count(), equalTo(before.size()));
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
-
-    app.session().logout();
+    verifyContactListInUI();
   }
 
 }

@@ -20,7 +20,7 @@ public class GroupHelper extends HelperBase {
   }
 
   public void submitGroupCreation() {
-        click(By.name("submit"));
+    click(By.name("submit"));
   }
 
   public void fillGroupForm(GroupData groupData) {
@@ -41,6 +41,10 @@ public class GroupHelper extends HelperBase {
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
 
   }
+
+  public void findGroupTest8() {
+    wd.findElement(By.cssSelector("span.group[value='260']"));
+}
 
   public boolean findGroupByName(String gname) {
     //wd.findElement(By.cssSelector("span.group")).getText();
