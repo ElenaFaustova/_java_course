@@ -3,21 +3,21 @@
     <firstname>Vasia0</firstname>
     <lastname>Korochkin0</lastname>
     <mobileTelephone>110</mobileTelephone>
-    <group>test8</group>
+    <groups>test8</groups>
     <photo>src\test\resources\avatars\Avatar2.png</photo>
   </contacts>
   <contacts>
     <firstname>Vasia1</firstname>
     <lastname>Korochkin1</lastname>
     <mobileTelephone>111</mobileTelephone>
-    <group>test8</group>
+    <groups>test8</groups>
     <photo>src\test\resources\avatars\Avatar2.png</photo>
   </contacts>
   <contacts>
     <firstname>Vasia2</firstname>
     <lastname>Korochkin2</lastname>
     <mobileTelephone>112</mobileTelephone>
-    <group>test8</group>
+    <groups>test8</groups>
     <photo>src\test\resources\avatars\Avatar2.png</photo>
   </contacts>
 </list>
