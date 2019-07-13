@@ -6,6 +6,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
@@ -18,7 +19,7 @@ public class HttpSession {
 
   public HttpSession(ApplicationManager app) {
     this.app = app;
-    httpclient = HttpClients.custom().setRedirectStrategy(new LaxRedirectionStrategy()).build();
+    httpclient = HttpClients.custom().setRedirectStrategy(new LaxRedirectStrategy()).build();
   }
 
   public boolean login(String username, String password) throws Exception {
@@ -37,7 +38,7 @@ public class HttpSession {
 
   private String getTextFrom(CloseableHttpResponse response) throws Exception {
     try {
-      return EntityUtils.ToString(response.getEntity());
+      return EntityUtils.toString(response.getEntity());
     } finally {
       response.close();
     }
@@ -45,7 +46,7 @@ public class HttpSession {
 
   public boolean isLoggedInAs(String username) throws Exception {
     HttpGet get = new HttpGet(app.getProperty("web.baseUrl") + "/login.php");
-    CloseableHttpResponse response = httpclient.execute(post);
+    CloseableHttpResponse response = httpclient.execute(get);
     String body = getTextFrom(response);
     return body.contains(String.format("<span class=\"italic\">%s</span>", username));
   }
