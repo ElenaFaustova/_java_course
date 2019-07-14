@@ -1,6 +1,5 @@
 package HF.study.mantis.tests;
 
-import HF.study.mantis.appmanager.ResetPasswordHelper;
 import HF.study.mantis.model.MailMessage;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -20,6 +19,7 @@ public class ResetPasswordTest extends TestBase {
 
   @Test
   public void testRegistration() throws Exception {
+    skipIfNotFixed(0000001);
     long now = System.currentTimeMillis();
     String user = String.format("user%s", now);
     String password = "password";

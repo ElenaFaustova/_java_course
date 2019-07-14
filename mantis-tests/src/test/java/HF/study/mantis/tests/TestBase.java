@@ -5,6 +5,7 @@ import HF.study.mantis.model.Issue;
 import biz.futureware.mantis.rpc.soap.client.IssueData;
 import biz.futureware.mantis.rpc.soap.client.MantisConnectLocator;
 import biz.futureware.mantis.rpc.soap.client.MantisConnectPortType;
+import biz.futureware.mantis.rpc.soap.client.ObjectRef;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.SkipException;
 import org.testng.annotations.AfterSuite;
@@ -14,6 +15,7 @@ import javax.xml.rpc.ServiceException;
 import java.math.BigInteger;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.rmi.RemoteException;
 
 
 public class TestBase {
@@ -34,23 +36,21 @@ public class TestBase {
     return app;
   }
 
-  //public boolean isIssueOpen(int issueId) throws MalformedURLException, ServiceException {
-  //  MantisConnectPortType mc = getMantisConnect();
-  //  IssueData issueData = new IssueData();
+  public boolean isIssueOpen(int issueId) throws MalformedURLException, ServiceException, RemoteException {
+    MantisConnectPortType mc = getMantisConnect();
+    IssueData issue = mc.mc_issue_get(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), BigInteger.valueOf(0000001));
+    ObjectRef issueStatus = issue.getStatus();
+    System.out.println(issue.getStatus());
+    return issueStatus.equals("новая");
+  }
 
-  //  IssueData issueStatus = mc.mc_issue_get(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), issueData);
-
-  //для проверки статуса баг-репорта с заданным идентификатором лучше использовать метод mc_issue_get
-
-
- // public void skipIfNotFixed(int issueId) {
- //   if (isIssueOpen(issueId)) {
-  //    throw new SkipException("Ignored because of issue " + issueId)
-  //  }
-  //}
+  public void skipIfNotFixed(int issueId) throws MalformedURLException, ServiceException, RemoteException {
+    if (isIssueOpen(issueId)) {
+      throw new SkipException("Ignored because of issue " + issueId);
+    }
+  }
 
   private MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
-    return new MantisConnectLocator()
-            .getMantisConnectPort(new URL(app.getProperty("web.soap.url")));
+    return new MantisConnectLocator().getMantisConnectPort(new URL(app.getProperty("web.soap.url")));
   }
 }
