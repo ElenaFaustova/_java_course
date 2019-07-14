@@ -23,16 +23,18 @@ public class ResetPasswordTest extends TestBase {
     long now = System.currentTimeMillis();
     String user = String.format("user%s", now);
     String password = "password";
-    String email = String.format("user1%s@localhost.localdomain", now);
+    String email = String.format("user1%s@localhost.", now);
     app.resetPassword().start("administrator", "root");
-    List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
+    List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
     String confirmationLink = findConfirmationLink(mailMessages, email);
     app.resetPassword().finish(confirmationLink, "password");
     assertTrue(app.newSession().login(user, password));
   }
 
+
+
   private String findConfirmationLink(List<MailMessage> mailMessages, String email) {
-    MailMessage mailMessage = mailMessages.stream().filter((m) -> m.to.equals(email)).findFirst().get();
+    MailMessage mailMessage = mailMessages.get(0);
     VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
     return regex.getText(mailMessage.text);
   }

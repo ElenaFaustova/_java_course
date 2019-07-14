@@ -21,6 +21,7 @@ public class ApplicationManager {
   private RegistrationHelper registrationHelper;
   private MailHelper mailHelper;
   private ResetPasswordHelper resetPasswordHelper;
+  private SoapHelper soapHelper;
 
 
   public ApplicationManager(String browser) {
@@ -64,7 +65,7 @@ public class ApplicationManager {
     //return resetPasswordHelper;
   //}
 
-  public WebDriver getDriver() {
+  public WebDriver getDriver () {
     if (wd == null) {
       if (browser.equals(BrowserType.FIREFOX)) {
         wd = new FirefoxDriver();
@@ -90,5 +91,11 @@ public class ApplicationManager {
     return new HttpSession(this);
   }
 
+public SoapHelper soap() {
+    if (soapHelper == null) {
+      soapHelper = new SoapHelper(this);
+    }
+    return soapHelper;
+}
 
 }

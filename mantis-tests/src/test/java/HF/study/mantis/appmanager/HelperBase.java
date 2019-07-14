@@ -23,6 +23,10 @@ public class HelperBase {
     wd.findElement(xpath).click();
   }
 
+  protected void clickCSS(By css) {
+    wd.findElement(css).click();
+  }
+
   protected void clickId(By id) {
     wd.findElement(id).click();
   }
