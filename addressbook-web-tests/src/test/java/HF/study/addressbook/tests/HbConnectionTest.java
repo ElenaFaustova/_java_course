@@ -2,6 +2,7 @@ package HF.study.addressbook.tests;
 
 import HF.study.addressbook.model.ContactData;
 import HF.study.addressbook.model.GroupData;
+import HF.study.addressbook.model.Groups;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -41,9 +42,11 @@ public class HbConnectionTest {
       System.out.println(contact);
       System.out.println(contact.getGroups());
     }
+    ContactData contact = new ContactData();
+    Groups beforeAdd = contact.getGroups();
+    System.out.println(contact);
     session.getTransaction().commit();
     session.close();
-
   }
 
   @Test

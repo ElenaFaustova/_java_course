@@ -4,6 +4,7 @@ import HF.study.addressbook.model.ContactData;
 import HF.study.addressbook.model.Contacts;
 import HF.study.addressbook.model.GroupData;
 import HF.study.addressbook.model.Groups;
+import org.hibernate.SessionFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -23,12 +24,12 @@ public class ContactAddToGroupTests extends TestBase {
       app.group().create(new GroupData().withName("test8"));
       app.goTo().homePage();
     } else if (groups.iterator().next().getName() == "test8") {
-        app.goTo().homePage();
-      } else {
-        app.goTo().groupPage();
-        app.group().create(new GroupData().withName("test8"));
-        app.goTo().homePage();
-      }
+      app.goTo().homePage();
+    } else {
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("test8"));
+      app.goTo().homePage();
+    }
     if (app.db().contacts().size() == 0) {
       File photo = new File("src/test/resources/Avatar.png");
       app.goTo().homePage();
@@ -36,33 +37,31 @@ public class ContactAddToGroupTests extends TestBase {
               .inGroup(groups.iterator().next()).withPhoto(photo), true, false);
       app.goTo().homePage();
     }
-    }
+  }
 
 
   @Test
   public void testContactAddToGroup() {
+
     Groups groups = app.db().groups();
     Contacts before = app.db().contacts();
-    Contacts beforeAdd = app.db().inGroup();
+    ContactData contactToAddToGroup = before.iterator().next();
+    Groups beforeAdd = contactToAddToGroup.getGroups();
+    ContactData contact = new ContactData().withId(contactToAddToGroup.getId()).withFirstname(contactToAddToGroup.getFirstname()).withLastname(contactToAddToGroup.getLastname()).inGroup(groups.iterator().next());
 
-    Contacts beforeContactInGroup = app.db().contactInGroupCount();
-
-    ContactData addedToGroupContact = before.iterator().next();
-    ContactData contact = new ContactData().withId(addedToGroupContact.getId()).withFirstname(addedToGroupContact.getFirstname()).withLastname(addedToGroupContact.getLastname()).inGroup(groups.iterator().next());
     app.goTo().homePage();
-    app.contact().addToGroup(addedToGroupContact);
+    app.contact().addToGroup(contactToAddToGroup);
     app.goTo().homePage();
     app.contact().showAllContacts();
+
+    Contacts contactsAfter = app.db().contacts();
+    ContactData contactAfterAddToGroup = contactsAfter.iterator().next();
+    Groups afterAdd = contactAfterAddToGroup.getGroups();
+    assertThat(afterAdd.size(), equalTo(beforeAdd.size() + 1));
+
     assertThat(app.contact().count(), equalTo(before.size()));
     Contacts after = app.db().contacts();
-    Contacts afterAdd = app.db().inGroup();
-
-    Contacts afterContactInGroup = app.db().contactInGroupCount();
-
-    assertThat(afterContactInGroup, equalTo(beforeContactInGroup.withAdded(contact)));
-
-    assertThat(after, equalTo(before.without(addedToGroupContact).withAdded(contact)));
-    assertThat(afterAdd, equalTo(beforeAdd.without(addedToGroupContact).withAdded(contact)));
+    assertThat(after, equalTo(before.without(contactToAddToGroup).withAdded(contact)));
     verifyContactListInUI();
   }
 }

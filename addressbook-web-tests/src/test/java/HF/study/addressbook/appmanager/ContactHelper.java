@@ -2,6 +2,7 @@ package HF.study.addressbook.appmanager;
 
 import HF.study.addressbook.model.ContactData;
 import HF.study.addressbook.model.Contacts;
+import HF.study.addressbook.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -234,5 +236,6 @@ public class ContactHelper extends HelperBase {
   public void showContactsInGroup8() {
     new Select(wd.findElement(By.name("group"))).selectByVisibleText("test8");
   }
+
 }
 

@@ -123,11 +123,6 @@ public class ContactData {
   private Set<GroupData> groups = new HashSet<GroupData>();
 
 
-  //@ManyToMany(fetch = FetchType.EAGER)
-  //@JoinTable(name = "address_in_groups",
-          //joinColumns = @JoinColumn(name = "id"))
-  //private Set<ContactData> contact = new HashSet<ContactData>();
-
 
   public ContactData withPhoto(File photo) {
     this.photo = photo.getPath();
