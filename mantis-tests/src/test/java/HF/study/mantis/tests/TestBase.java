@@ -41,7 +41,7 @@ public class TestBase {
     IssueData issue = mc.mc_issue_get(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), BigInteger.valueOf(0000001));
     ObjectRef issueStatus = issue.getStatus();
     System.out.println(issue.getStatus());
-    return issueStatus.equals("новая");
+    return issueStatus.equals("закрыта");
   }
 
   public void skipIfNotFixed(int issueId) throws MalformedURLException, ServiceException, RemoteException {
