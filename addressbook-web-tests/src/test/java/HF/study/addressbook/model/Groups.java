@@ -39,4 +39,15 @@ public class Groups extends ForwardingSet<GroupData> {
     return groups;
   }
 
+  public Groups withChosenGroupToAdd(GroupData chosenGroupToAdd) {
+    Groups groups = new Groups(this);
+    groups.add(chosenGroupToAdd);
+    return groups;
+  }
+
+  public Groups withChosenGroupToRemove(GroupData chosenGroupToRemove) {
+    Groups groups = new Groups(this);
+    groups.remove(chosenGroupToRemove);
+    return groups;
+  }
 }

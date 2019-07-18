@@ -10,7 +10,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -190,9 +189,9 @@ public class ContactHelper extends HelperBase {
   }
 
 
-  public void addToGroup(ContactData contact) {
+  public void addToGroup(ContactData contact, GroupData chosenGroupToAdd) {
     selectContactById(contact.getId());
-    chooseGroupToAdd();
+    chooseGroupToAdd(chosenGroupToAdd);
     submitGroupAddition();
     isContactAddedToGroup();
 
@@ -206,16 +205,16 @@ public class ContactHelper extends HelperBase {
     findElement(By.name("add"));
   }
 
-  public void chooseGroupToAdd() {
-    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText("test8");
+  public void chooseGroupToAdd(GroupData group) {
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(group.getName());
   }
 //toGroup.getGroups().iterator().next().getName()
   public void showAllContacts() {
     new Select(wd.findElement(By.name("group"))).selectByVisibleText("[all]");
   }
 
-  public void removeContactFromGroupe(ContactData contact) {
-    showContactsInGroup8();
+  public void removeContactFromGroup(ContactData contact, GroupData chosenGroupToRemove) {
+    showContactsInGroup(chosenGroupToRemove);
     selectContact();
     initRemoveContactFromGroup();
     isContactRemovedFromGroup();
@@ -233,8 +232,8 @@ public class ContactHelper extends HelperBase {
     click(By.name("remove"));
   }
 
-  public void showContactsInGroup8() {
-    new Select(wd.findElement(By.name("group"))).selectByVisibleText("test8");
+  public void showContactsInGroup(GroupData group) {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText(group.getName());
   }
 
 }
