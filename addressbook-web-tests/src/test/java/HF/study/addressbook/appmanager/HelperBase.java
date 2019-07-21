@@ -37,8 +37,8 @@ public class HelperBase {
     }
 
 
-// null - для сохранения дефолтных полей.
-// ! - отрицание.
+// null - РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ РґРµС„РѕР»С‚РЅС‹С… РїРѕР»РµР№.
+// ! - РѕС‚СЂРёС†Р°РЅРёРµ.
 
 
   //protected void select(String bday, String s, String option) {

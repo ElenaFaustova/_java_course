@@ -264,7 +264,7 @@ public class ContactData {
     return this;
   }
 
-  //Помечаем контакт, как добавленный в группу
+  //РџРѕРјРµС‡Р°РµРј РєРѕРЅС‚Р°РєС‚, РєР°Рє РґРѕР±Р°РІР»РµРЅРЅС‹Р№ РІ РіСЂСѓРїРїСѓ
   public ContactData inGroup(GroupData group) {
     groups.add(group);
     return this;
