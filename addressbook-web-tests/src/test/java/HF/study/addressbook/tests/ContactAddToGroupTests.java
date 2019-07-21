@@ -16,7 +16,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactAddToGroupTests extends TestBase {
-  private Set<GroupData> notInListOfContactGroups;
+
 
   @BeforeMethod
   public void ensurePreconditions() {

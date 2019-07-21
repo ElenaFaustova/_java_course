@@ -3,20 +3,38 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/appmanager/ApplicationManager.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/appmanager/ContactHelper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/appmanager/DbHelper.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/appmanager/GroupHelper.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/appmanager/HelperBase.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/appmanager/NavigationHelper.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/appmanager/SessionHelper.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/generators/ContactDataGenerator.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/generators/GroupDataGenerator.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/model/ContactData.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/model/Contacts.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/model/GroupData.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/model/Groups.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/tests/ContactAddToGroupTests.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/tests/ContactCreationTests.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/tests/ContactDeletionTests.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/tests/ContactDetailsTests.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/tests/ContactModificationTests.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/addressbook-web-tests/src/test/java/HF/study/addressbook/tests/GroupCreationTests.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mantis-tests/build.gradle" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mantis-tests/src/test/java/HF/study/mantis/appmanager/ApplicationManager.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mantis-tests/src/test/java/HF/study/mantis/appmanager/HelperBase.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mantis-tests/src/test/java/HF/study/mantis/appmanager/HttpSession.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mantis-tests/src/test/java/HF/study/mantis/appmanager/MailHelper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mantis-tests/src/test/java/HF/study/mantis/appmanager/RegistrationHelper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mantis-tests/src/test/java/HF/study/mantis/appmanager/ResetPasswordHelper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mantis-tests/src/test/java/HF/study/mantis/model/MailMessage.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mantis-tests/src/test/java/HF/study/mantis/tests/LoginTests.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mantis-tests/src/test/java/HF/study/mantis/tests/RegistrationTests.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mantis-tests/src/test/java/HF/study/mantis/tests/ResetPasswordTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mantis-tests/src/test/java/HF/study/mantis/tests/TestBase.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mantis-tests/src/test/resources/config_inc.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rest-sample/build.gradle" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rest-sample/src/test/java/HF/study/rest/TestBase.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sandbox/src/main/java/HF/study/sandbox/Collections.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sandbox/src/main/java/HF/study/sandbox/DistanceBetweenTwoPoints2D.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sandbox/src/main/java/HF/study/sandbox/MyProgram.java" charset="UTF-8" />
