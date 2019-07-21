@@ -28,7 +28,7 @@ public class ContactAddToGroupTests extends TestBase {
     if (app.db().contacts().size() == 0) {
       File photo = new File("src/test/resources/Avatar.png");
       app.goTo().homePage();
-      app.contact().create(new ContactData().withFirstname("Вася3").withLastname("Корочкин3")
+      app.contact().create(new ContactData().withFirstname("Р’Р°СЃСЏ3").withLastname("РљРѕСЂРѕС‡РєРёРЅ3")
               .inGroup(groups.iterator().next()).withPhoto(photo), true, false);
       app.goTo().homePage();
     }
