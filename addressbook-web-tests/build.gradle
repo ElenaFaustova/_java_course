@@ -15,8 +15,8 @@ dependencies {
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.3.Final'
 }
 
-task TestGroups(type: Test) {
-    useTestNG() {
+task testGroups(type: Test) {
+    useTestNG {
         suites 'src/test/resources/testng-groups.xml'
     }
     if (project.hasProperty('browser')) {
@@ -30,7 +30,8 @@ task TestGroups(type: Test) {
     }
 }
 
-task TestContacts(type: Test) {
+/*
+task testContacts(type: Test) {
     useTestNG() {
         suites 'src/test/resources/testng-contacts.xml'
     }
@@ -43,4 +44,4 @@ task TestContacts(type: Test) {
     if (project.hasProperty('veryfyUI')) {
         systemProperty 'veryfyUI', "${veryfyUI}"
     }
-}
+}*/
