@@ -1,5 +1,9 @@
 package HF.study.mantis.model;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
+
+
 public class Issue {
 
   private int id;

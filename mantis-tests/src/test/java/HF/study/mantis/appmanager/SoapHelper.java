@@ -36,13 +36,13 @@ public class SoapHelper {
   public Issue addIssue(Issue issue) throws MalformedURLException, ServiceException, RemoteException {
     MantisConnectPortType mc = getMantisConnect();
     String[] categories = mc.mc_project_get_categories(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), BigInteger.valueOf(issue.getProject().getId()));
-    IssueData issueData = new IssueData();
+    biz.futureware.mantis.rpc.soap.client.IssueData issueData = new biz.futureware.mantis.rpc.soap.client.IssueData();
     issueData.setSummary(issue.getSummary());
     issueData.setDescription(issue.getDescription());
     issueData.setProject(new ObjectRef(BigInteger.valueOf(issue.getProject().getId()), issue.getProject().getName()));
     issueData.setCategory(categories[0]);
     BigInteger issueId = mc.mc_issue_add(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), issueData);
-    IssueData createdIssueData = mc.mc_issue_get(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), issueId);
+    biz.futureware.mantis.rpc.soap.client.IssueData createdIssueData = mc.mc_issue_get(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), issueId);
     return new Issue().withId(createdIssueData.getId().intValue()).withSummary(createdIssueData.getSummary())
             .withDescription(createdIssueData.getDescription())
               .withProject(new Project().withId(createdIssueData.getProject().getId().intValue())

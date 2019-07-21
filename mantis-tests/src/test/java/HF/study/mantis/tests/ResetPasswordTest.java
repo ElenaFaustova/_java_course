@@ -24,7 +24,7 @@ public class ResetPasswordTest extends TestBase {
   @Test
   public void testRegistration() throws Exception {
     skipIfNotFixed(0000001);
-    Users users = app.db().users();
+    //Users users = app.db().users();
     UserData user = app.db().users().iterator().next();
     //UserData user = new UserData().withId(user1.getId()).withUsername(user1.getUsername()).withEmail(user1.getEmail());
     int userId = user.getId();

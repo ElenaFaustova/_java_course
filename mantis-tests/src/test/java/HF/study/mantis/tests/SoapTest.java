@@ -2,7 +2,6 @@ package HF.study.mantis.tests;
 
 import HF.study.mantis.model.Issue;
 import HF.study.mantis.model.Project;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import javax.xml.rpc.ServiceException;

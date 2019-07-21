@@ -21,7 +21,7 @@ public class TestBase {
     return issuesString.contains("Resolved");
   }
 
-//Resolved
+//Open
 
 /*  public boolean isIssueOpen(int issueId) throws IOException {
     String json = getExecutor().execute(Request.Get("http://bugify.stqa.ru/api/issues/" + issueId + ".json"))
