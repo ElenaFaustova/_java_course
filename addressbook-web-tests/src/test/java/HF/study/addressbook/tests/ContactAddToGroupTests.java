@@ -4,12 +4,10 @@ import HF.study.addressbook.model.ContactData;
 import HF.study.addressbook.model.Contacts;
 import HF.study.addressbook.model.GroupData;
 import HF.study.addressbook.model.Groups;
-import org.hibernate.SessionFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.File;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -30,7 +28,7 @@ public class ContactAddToGroupTests extends TestBase {
     if (app.db().contacts().size() == 0) {
       File photo = new File("src/test/resources/Avatar.png");
       app.goTo().homePage();
-      app.contact().create(new ContactData().withFirstname("Р’Р°СЃСЏ3").withLastname("РљРѕСЂРѕС‡РєРёРЅ3")
+      app.contact().create(new ContactData().withFirstname("Вася3").withLastname("Корочкин3")
               .inGroup(groups.iterator().next()).withPhoto(photo), true, false);
       app.goTo().homePage();
     }

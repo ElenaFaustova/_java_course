@@ -20,7 +20,7 @@ public class ContactDeletionTests extends TestBase {
       app.goTo().groupPage();
       app.group().create(new GroupData().withName("test8"));
       app.goTo().homePage();
-      app.contact().create(new ContactData().withFirstname("Р’Р°СЃСЏ3").withLastname("РљРѕСЂРѕС‡РєРёРЅ3").inGroup(groups.iterator().next()), true, false);
+      app.contact().create(new ContactData().withFirstname("Вася3").withLastname("Корочкин3").inGroup(groups.iterator().next()), true, false);
       app.goTo().homePage();
     }
   }

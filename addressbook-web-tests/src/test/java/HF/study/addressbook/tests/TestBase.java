@@ -5,14 +5,13 @@ import HF.study.addressbook.model.ContactData;
 import HF.study.addressbook.model.Contacts;
 import HF.study.addressbook.model.GroupData;
 import HF.study.addressbook.model.Groups;
-import org.hamcrest.CoreMatchers;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
 import java.util.stream.Collectors;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 

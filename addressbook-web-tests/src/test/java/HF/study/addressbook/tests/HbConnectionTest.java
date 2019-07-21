@@ -1,7 +1,6 @@
 package HF.study.addressbook.tests;
 
 import HF.study.addressbook.model.ContactData;
-import HF.study.addressbook.model.GroupData;
 import HF.study.addressbook.model.Groups;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

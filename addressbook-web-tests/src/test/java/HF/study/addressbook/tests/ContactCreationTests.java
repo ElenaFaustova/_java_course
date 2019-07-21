@@ -79,7 +79,7 @@ public class ContactCreationTests extends TestBase {
   }
 
 
-  //РёРіРЅРѕСЂ С‚РµСЃС‚Р°: @Test(enabled = false)
+  //игнор теста: @Test(enabled = false)
   @Test(dataProvider = "validContactsXML")
   public void testContactCreation(ContactData contact) throws Exception {
     Contacts before = app.db().contacts();

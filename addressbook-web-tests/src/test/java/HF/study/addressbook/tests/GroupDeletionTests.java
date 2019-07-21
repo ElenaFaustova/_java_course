@@ -2,13 +2,8 @@ package HF.study.addressbook.tests;
 
 import HF.study.addressbook.model.GroupData;
 import HF.study.addressbook.model.Groups;
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
-import org.testng.Assert;
-import org.testng.annotations.*;
-
-import java.util.List;
-import java.util.Set;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;

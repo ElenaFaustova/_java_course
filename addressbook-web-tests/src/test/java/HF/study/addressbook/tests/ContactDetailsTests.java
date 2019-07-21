@@ -9,8 +9,8 @@ import org.testng.annotations.Test;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactDetailsTests extends TestBase {
 
@@ -22,8 +22,8 @@ public class ContactDetailsTests extends TestBase {
       Groups groups = app.db().groups();
       app.goTo().groupPage();
       app.group().create(new GroupData().withName("test8"));
-      app.contact().create(new ContactData().withFirstname("Р’Р°СЃСЏ3").withLastname("РљРѕСЂРѕС‡РєРёРЅ3")
-            .withAddress("РњРѕСЃРєРІР°").withEmail("1@1").withEmail2("2@2").withEmail3("3@3")
+      app.contact().create(new ContactData().withFirstname("Вася3").withLastname("Корочкин3")
+            .withAddress("Москва").withEmail("1@1").withEmail2("2@2").withEmail3("3@3")
               .withHomeTelephone("111").withMobileTelephone("222").withWorkTelephone("333")
               .inGroup(groups.iterator().next()),true, false);
       app.goTo().homePage();
