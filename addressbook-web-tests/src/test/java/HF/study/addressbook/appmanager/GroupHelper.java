@@ -51,7 +51,7 @@ public class GroupHelper extends HelperBase {
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element : elements) {
       String groupname = element.getText();
-      System.out.println("РРјСЏ РіСЂСѓРїРїС‹ = " + groupname);
+      System.out.println("Имя группы = " + groupname);
     }
     return true;
   }
@@ -93,7 +93,7 @@ public class GroupHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
-  //СЃС‡РёС‚Р°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ:
+  //считаем количество элементов:
   public int count() {
     return wd.findElements(By.name("selected[]")).size();
   }
