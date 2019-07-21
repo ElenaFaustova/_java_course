@@ -19,6 +19,7 @@ test {
     useTestNG()
 }
 
+
 task TestGroups(type: Test) {
     useTestNG() {
         suites 'src/test/resources/testng-groups.xml'
