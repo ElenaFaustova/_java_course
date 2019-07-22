@@ -8,6 +8,16 @@ public class Issue {
   private String subject;
   private String description;
   private String status;
+  private String state_name;
+
+  public String getState_name() {
+    return state_name;
+  }
+
+  public Issue withState_name(String state_name) {
+    this.state_name = state_name;
+    return this;
+  }
 
   public String getStatus() {
     return status;
@@ -58,5 +68,16 @@ public class Issue {
   @Override
   public int hashCode() {
     return Objects.hash(id, subject, description);
+  }
+
+  @Override
+  public String toString() {
+    return "Issue{" +
+            "id=" + id +
+            ", subject='" + subject + '\'' +
+            ", description='" + description + '\'' +
+            ", status='" + status + '\'' +
+            ", state_name='" + state_name + '\'' +
+            '}';
   }
 }
